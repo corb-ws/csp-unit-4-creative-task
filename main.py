@@ -5,7 +5,6 @@ import random
 app.c=0
 from importlib import resources
 from typing import Iterable
-
 def load_words_from_package(pkg: str = "wordlist", *, unique=False) -> list[str]:
     root = resources.files(pkg)
     words: list[str] = []
@@ -16,8 +15,6 @@ def load_words_from_package(pkg: str = "wordlist", *, unique=False) -> list[str]
     if unique:
         return sorted(set(words))
     return words
-
-# usage (works because you have wordlist/__init__.py)
 words = load_words_from_package("wordlist", unique=True)
 def createBoxes(y):
     Rect(30,y,60,60,fill=None,border='lightGray')
@@ -43,7 +40,7 @@ def onMousePress(x,y):
     app.word=app.getTextInput('Enter Word')
     while len(app.word)!=5:
         app.word=app.getTextInput('Enter a 5 Letter Word')
-    while app.word.lower()not in words:
+    while app.word not in words:
         app.word=app.getTextInput('Not in Word List')
     app.word=app.word.upper()
     for a in app.word:
@@ -100,5 +97,4 @@ createBoxes(140)
 createBoxes(205)
 createBoxes(270)
 createBoxes(335)
-print(answer)
 cmu_graphics.run()
